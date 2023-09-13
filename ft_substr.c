@@ -21,16 +21,23 @@
 *string ’s’.
 *len: The maximum length of the substring.
 */
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		i;
-	size_t	slen;
-	char	*str;
+	size_t		i;
+	char		*str;
 
-	if (!s)
-		return (NULL);
-	slen = ft_strlen(s);
 	i = 0;
-	while ((slen > start) && (i < len))
+	str = (char*)malloc(sizeof(char) * (len + 1));
+	if (!s || !str)
+		return (NULL);
+	while (s[start] && (i < len))
+	{
+		str[i] = s[start];
+		start++;
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

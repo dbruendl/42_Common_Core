@@ -28,7 +28,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t num);
 void	*ft_memchr(const void *ptr, int value, size_t num);
 char	*ft_strdup(const char *s);
 size_t	ft_strlen(const char *str);
-char	*ft_strcpy(char *dest, const char *src);
 char	*ft_strncpy(char *dst, const char *src, size_t len);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 char	*ft_strchr(const char *s, int c);
@@ -46,4 +45,10 @@ int		ft_isprint(int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 void	*ft_calloc(size_t nelem, size_t elsize);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putchar_fd(char c, int fd);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
 #endif
