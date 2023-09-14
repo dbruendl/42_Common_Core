@@ -47,6 +47,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (len > 0 && checkstr(s1[len], set))
 		len--;
 	s = (char *) malloc (sizeof(char *) * (len - i) + 1);
+	if(!s)
+		return(NULL);
 	len = len - i;
 	while(j <= len)
 	{

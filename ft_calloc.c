@@ -12,20 +12,15 @@
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t num, size_t size)
 {
 	void	*p;
-	size_t	i;
+	size_t	sum;
 
-	p = malloc(nelem * elsize);
-	i = 0;
-	if (p != NULL)
-	{
-		while (i < (nelem * elsize))
-		{
-			p = 0;
-			i++;
-		}
-	}
+	sum = num * size;
+	p = (void *) malloc(sum);
+	if (!p)
+		return (NULL);
+	ft_bzero(p,	sum);
 	return (p);
 }
