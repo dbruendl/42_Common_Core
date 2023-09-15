@@ -17,11 +17,11 @@ char	*ft_strchr(const char *s, int c)
 	char	*str;
 	char	cha;
 
-	str = (char *)s;
-	cha = (char)c;	
+	str = (char *) s;
+	cha = (char) c;
 	while (*str)
 	{
-		if(*str == cha)
+		if (*str == cha)
 			return (str);
 		str++;
 	}

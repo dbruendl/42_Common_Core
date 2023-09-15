@@ -31,10 +31,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s)
 		return (NULL);
 	pos1 = s;
-	while(*s1)
+	while (*s1)
 		*s++ = *s1++;
-	while(*s2)
+	while (*s2)
 		*s++ = *s2++;
 	*s = '\0';
-	return(pos1);
+	return (pos1);
 }

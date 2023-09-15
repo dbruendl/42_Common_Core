@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+
 //resets a String to the size of n, and fills everything with a 0
+
 void	ft_bzero(void *s, size_t n)
 {
-	char	*reset;
+	char		*reset;
 	size_t		i;
 
 	i = 0;
