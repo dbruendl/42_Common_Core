@@ -6,12 +6,15 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:23:11 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/07 16:21:19 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/15 17:11:50 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+* fills dest with len Bytes with c value
+*/
 void	*ft_memset(void *dest, int c, size_t len)
 {
 	size_t			i;

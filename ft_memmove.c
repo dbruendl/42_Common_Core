@@ -6,11 +6,16 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:24:01 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/07 16:21:53 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/15 16:47:15 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+* copys the num Bytes from src to dest even when the
+* memory overlapps
+*/
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
@@ -25,7 +30,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		ft_memcpy(dest, src, n);
 	else
 	{
-		while(n > 0)
+		while (n > 0)
 		{
 			n--;
 			d[n] = s[n];

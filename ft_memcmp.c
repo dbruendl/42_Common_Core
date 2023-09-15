@@ -6,11 +6,16 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:27:17 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/07 16:20:24 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/15 16:42:11 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+/*
+* compares the first n Bytes of both s1 and s2 
+* and returns the comparision
+*/
 
 int	ft_memcmp(const void *set1, const void *set2, size_t n)
 {
