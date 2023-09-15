@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbrundl <dbrundl@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:52:07 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/11 16:52:10 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/14 16:54:29 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,31 @@
 */
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static size_t	ft_strnlen(const char *s, size_t n)
 {
-	size_t		i;
-	char		*str;
+	size_t	i;
 
 	i = 0;
-	str = (char*)malloc(sizeof(char) * (len + 1));
-	if (!s || !str)
-		return (NULL);
-	while (s[start] && (i < len))
-	{
-		str[i] = s[start];
-		start++;
+	while (s[i] && i < n)
 		i++;
-	}
-	str[i] = '\0';
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t		slen;
+	char		*str;
+
+	if (!s)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (slen > start)
+		len = ft_strnlen(&s[start], len);
+	else
+		return (ft_strdup(""));
+	str = (char*)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, &s[start], len + 1);
 	return (str);
 }

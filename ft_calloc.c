@@ -6,21 +6,36 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:27:55 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/07 16:19:00 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/15 14:46:03 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t num, size_t size)
+/*
+* reserves space for an Array of Elements and fills them
+* with zeros
+*/
+
+static size_t	checkoverlfow(size_t nelem, size_t elsize)
 {
-	void	*p;
+	if ((elsize * nelem) / nelem != elsize)
+		return (1);
+	else
+		return (0);
+}
+
+void	*ft_calloc(size_t nelem, size_t elsize)
+{
+	void	*a;
 	size_t	sum;
 
-	sum = num * size;
-	p = (void *) malloc(sum);
-	if (!p)
+	a = NULL;
+	if (nelem != 0 && checkoverlfow(nelem, elsize))
 		return (NULL);
-	ft_bzero(p,	sum);
-	return (p);
+	sum = nelem * elsize;
+	a = (void *) malloc(sum);
+	if (a)
+		ft_bzero(a, sum);
+	return (a);
 }

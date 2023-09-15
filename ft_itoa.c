@@ -3,53 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbrundl <dbrundl@student.42vienna.com      +#+  +:+       +#+        */
+/*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:53:02 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/11 16:53:04 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/15 15:53:12 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Allocates (with malloc(3)) and returns a string
-representing the integer received as an argument.
-Negative numbers must be handled.
-*/
 #include "libft.h"
 
-char	*ft_itoa(int n)
-{
-	int		i;
-	int		j;
-	int		c;
-	char	*str;
+/*Allocates (with malloc(3)) and returns a string
+*representing the integer received as an argument.
+*Negative numbers must be handled.
+*/
 
-	j = n;
+static size_t	nbrlen(int n)
+{
+	size_t	i;
+
 	i = 0;
-	c = 0;
-	if (n < 0)
-	{
-		n *= -1;
+	if (n <= 0)
 		i++;
-	}
-	while (n != 0)
+	while (n)
 	{
 		n = n / 10;
 		i++;
 	}
-	str = malloc(i+1);
-	if (!str)
+	return (i);
+}
+
+static int	ft_abs(int num)
+{
+	if (num < 0)
+		return (num * -1);
+	else
+		return (num);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*arr;
+	size_t	len;
+
+	len = nbrlen(n) + 1;
+	arr = (char *)malloc(sizeof (char) * (len));
+	if (!arr)
 		return (NULL);
-	if (j < 0)
+	len--;
+	arr[len] = '\0';
+	if (!n)
 	{
-		str[c] = '-';
-		j *= -1;
-		i--;
+		len--;
+		arr[len] = '0';
 	}
-	str[i+1] = '\0';
-	while (j)
+	while (n)
 	{
-		str[i--] = (j % 10) + '0';
-		j = j / 10;
+		len--;
+		arr[len] = ft_abs(n % 10) + '0';
+		n = n / 10;
 	}
-	return (str);
+	if (len--)
+		arr[len] = '-';
+	return (arr);
 }
