@@ -12,13 +12,19 @@
 
 #include "libft.h"
 
+/*
+* copys the given string and allocates the right memory for the s
+*/
+
 char	*ft_strdup(const char *s)
 {
 	char	*c;
+	int		len;
 
-	c = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
+	len = ft_strlen(s) + 1;
+	c = (char *)malloc(sizeof(char) * len);
 	if (!c)
 		return (NULL);
-	ft_strlcpy(c, s, ft_strlen(s)+1);
+	ft_strlcpy(c, s, len);
 	return (c);
 }

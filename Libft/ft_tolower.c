@@ -12,6 +12,11 @@
 
 #include "libft.h"
 
+
+/*
+*  checks if the character is uppercaser and makes it lowercase
+*/
+
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')

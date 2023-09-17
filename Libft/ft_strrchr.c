@@ -12,6 +12,10 @@
 
 #include "libft.h"
 
+/*
+* looks for the last occurance of the character c in s
+*/
+
 char	*ft_strrchr(const char *s, int c)
 {
 	int		i;

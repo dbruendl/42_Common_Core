@@ -12,6 +12,10 @@
 
 #include "libft.h"
 
+/*
+* looks for the first occurence from little in big based on the maximum number of len
+*/
+
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	llen;

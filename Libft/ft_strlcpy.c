@@ -12,6 +12,10 @@
 
 #include "libft.h"
 
+/*
+*	The function copies the src at the end of dest as long as it is inside of size
+*/
+
 size_t	ft_strlcpy(char *dest, const char *src, unsigned int size)
 {
 	unsigned int	i;
