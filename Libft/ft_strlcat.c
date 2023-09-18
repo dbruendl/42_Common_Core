@@ -6,14 +6,15 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:24:35 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/07 16:00:52 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:54:39 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-* Appends the src to the dest depending on the size and ends with a null terminator
+* Appends the src to the dest depending 
+* on the size and ends with a null terminator
 */
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {

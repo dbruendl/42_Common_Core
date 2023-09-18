@@ -6,12 +6,11 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:26:19 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/07 15:16:13 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:52:12 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 /*
 *  checks if the character is uppercaser and makes it lowercase
