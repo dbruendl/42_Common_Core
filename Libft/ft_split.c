@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:52:49 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/15 12:49:11 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/18 15:43:48 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static size_t	count_words(char const *s, char c)
 			s++;
 		if (*s)
 			j++;
-		while (*s != c && *s)
+		while (*s && *s != c)
 			s++;
 	}
 	return (j);
@@ -40,16 +40,16 @@ static size_t	count_words(char const *s, char c)
 
 static size_t	wordlen(const char *s, char c)
 {
-	size_t	ret;
+	size_t	wlen;
 
 	if (!ft_strchr(s, c))
-		ret = ft_strlen(s);
+		wlen = ft_strlen(s);
 	else
-		ret = ft_strchr(s, c) - s;
-	return (ret);
+		wlen = ft_strchr(s, c) - s;
+	return (wlen);
 }
 
-static void	*clean(char **strs, int i)
+static void	*clean_m(char **strs, int i)
 {
 	while (i > 0)
 	{
@@ -82,7 +82,7 @@ char	**ft_split(char const *s, char c)
 		count = wordlen(s, c);
 		sum[i] = ft_substr(s, 0, count);
 		if (!sum[i++])
-			return (clean(sum, --i));
+			return (clean_m(sum, --i));
 		s += count;
 	}
 	sum[i] = NULL;

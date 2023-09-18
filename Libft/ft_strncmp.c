@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 13:26:54 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/07 12:42:23 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:36:16 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	if (i == n)
 		return (0);
-	return ((int)((unsigned char)s1[i] - (unsigned char)s2[i]));
+	return ((int)(str1[i] - str2[i]));
 }

@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 16:53:02 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/15 15:53:12 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/18 16:20:14 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_itoa(int n)
 		return (NULL);
 	len--;
 	arr[len] = '\0';
-	if (!n)
+	if (n == 0)
 	{
 		len--;
 		arr[len] = '0';
