@@ -51,7 +51,7 @@ static size_t	wordlen(const char *s, char c)
 
 static void	*clean_m(char **strs, int i)
 {
-	while (i > 0)
+	while (i >= 0)
 	{
 		free(strs[i]);
 		i--;
