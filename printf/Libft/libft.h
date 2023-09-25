@@ -6,10 +6,11 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:00:03 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/22 14:06:05 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/25 16:54:55 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdlib.h>

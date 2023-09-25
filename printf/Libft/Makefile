@@ -6,7 +6,7 @@
 #    By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/07 13:19:41 by dbrundl           #+#    #+#              #
-#    Updated: 2023/09/07 17:55:22 by dbrundl          ###   ########.fr        #
+#    Updated: 2023/09/25 16:59:16 by dbrundl          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS = 	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CC = gcc
+CC = cc
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra
 
