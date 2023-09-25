@@ -5,39 +5,40 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/07 13:19:41 by dbrundl           #+#    #+#              #
-#    Updated: 2023/09/25 17:57:15 by dbrundl          ###   ########.fr        #
+#    Created: 2023/09/20 12:23:36 by dbrundl           #+#    #+#              #
+#    Updated: 2023/09/25 17:10:14 by dbrundl          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+SRCS = 	ft_print_hex.c ft_print_pointer.c ft_printf.c ft_write.c
 
-SRCS = 	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
-		ft_isascii.c ft_isdigit.c ft_isprint.c ft_memchr.c ft_memcmp.c \
-		ft_memcpy.c ft_memmove.c ft_memset.c ft_strchr.c ft_strdup.c \
-		ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_strrchr.c\
-		ft_strnstr.c ft_tolower.c ft_toupper.c ft_substr.c ft_strjoin.c\
-		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_strtrim.c \
-		ft_split.c ft_itoa.c ft_itoa_base.c ft_strmapi.c ft_putnbr_fd.c ft_striteri.c \
+LIBFT_PATH	=	./Libft
+LIBFT		=	$(LIBFT_PATH)/libft.a
+$(LIBFT):
+				make -C $(LIBFT_PATH)
 
-OBJS = $(SRCS:.c=.o)
+$(NAME): 		$(OBJS)
+				cp $(LIBFT) $(NAME)
+				ar rcs $(NAME) $(OBJS)
 
-CC = cc
-RM = rm -f
-CFLAGS = -Wall -Werror -Wextra
+OBJS 		= 	$(SRCS:.c=.o)
 
-NAME = libft.a
+CC 			= 	cc
+RM 			= 	rm -f
+CFLAGS		= 	-Wall -Werror -Wextra
 
-all:	$(NAME)
+NAME 		= 	libftprintf.a
 
-$(NAME): 	$(OBJS)
-			ar rcs $(NAME) $(OBJS)
+all:			$(LIBFT) $(NAME)
 
-clean:		
-			$(RM) $(OBJS)
+clean:			
+				make clean -C $(LIBFT_PATH)
+				$(RM) $(OBJS)
 
-fclean:		clean
-			$(RM) $(NAME)
+fclean:			clean
+				make fclean -C $(LIBFT_PATH)
+				$(RM) $(NAME)
 
-re:			fclean $(NAME)
+re:				fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:			all clean fclean re libft
