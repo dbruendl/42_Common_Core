@@ -6,36 +6,13 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/21 18:43:29 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/25 16:50:04 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf(const char *format, ...)
-{
-   int  i;
-   va_list ap;
-   va_start(ap,format);
-
-   i = 0;
-   while(format[i])
-   {
-        if(format[i] == '%')
-            if(check_references(format[i + 1],ap) == 0)
-            {
-                ft_putchar_fd(format[i],1);
-                i = i + 2;
-            }
-        else
-            ft_putchar_fd(format[i],1);
-        i++;
-   }
-   va_stop(ap);
-   return(i);
-}
-
-int check_references(char c, va_list ap)
+static int check_references(char c, va_list ap)
 {
     if(c == 'c')
     {
@@ -63,4 +40,27 @@ int check_references(char c, va_list ap)
     {
         return (0);
     }
+}
+
+int ft_printf(const char *format, ...)
+{
+   int  i;
+   va_list ap;
+   va_start(ap,format);
+
+   i = 0;
+   while(format[i])
+   {
+        if(format[i] == '%')
+            if(check_references(format[i + 1],ap) == 0)
+            {
+                ft_putchar_fd(format[i],1);
+                i = i + 2;
+            }
+        else
+            ft_putchar_fd(format[i],1);
+        i++;
+   }
+   va_stop(ap);
+   return(i);
 }

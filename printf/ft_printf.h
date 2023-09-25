@@ -16,12 +16,11 @@
 # include <stdarg.h>
 # include "Libft/libft.h"
 
-# define STDOUT 1
 # define HEX "0123456789abcdef"
 # define HEX2 "0123456789ABCDEF"
 
 int ft_printf(const char *format, ...);
 int ft_write(char * c);
-
-
+int	ft_print_hex(unsigned int num, char form);
+int ft_print_pointer(void *p);
 #endif

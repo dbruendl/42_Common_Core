@@ -6,7 +6,36 @@
 #    By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 12:23:36 by dbrundl           #+#    #+#              #
-#    Updated: 2023/09/20 12:23:38 by dbrundl          ###   ########.fr        #
+#    Updated: 2023/09/25 16:46:32 by dbrundl          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+SRCS = 	ft_print_hex.c ft_print_pointer.c ft_printf.c ft_write.c
+
+LIBFT_PATH	=	./libft
+LIBFT		=	$(LIBFT_PATH)/libft.a
+$(LIBFT):
+				make -C $(LIBFT_PATH)
+
+$(NAME): 		$(OBJS)
+				ar rcs $(NAME) $(OBJS)
+
+OBJS 		= 	$(SRCS:.c=.o)
+
+CC 			= 	cc
+RM 			= 	rm -f
+CFLAGS		= 	-Wall -Werror -Wextra
+
+NAME 		= 	libftprintf.a
+
+all:			$(LIBFT) $(NAME)
+
+clean:		
+				$(RM) $(OBJS)
+
+fclean:			clean -C $(LIBFT_PATH)
+				$(RM) $(NAME)
+
+re:				fclean $(NAME)
+
+.PHONY:			all clean fclean re libft
