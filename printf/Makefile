@@ -6,7 +6,7 @@
 #    By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 12:23:36 by dbrundl           #+#    #+#              #
-#    Updated: 2023/09/25 16:58:03 by dbrundl          ###   ########.fr        #
+#    Updated: 2023/09/25 17:10:14 by dbrundl          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ $(LIBFT):
 				make -C $(LIBFT_PATH)
 
 $(NAME): 		$(OBJS)
-				ar rcs $(NAME) $(OBJS)
+				cp $(LIBFT) $(NAME)
+				ar rcs $(NAME) $(OBJECTS)
 
 OBJS 		= 	$(SRCS:.c=.o)
 
