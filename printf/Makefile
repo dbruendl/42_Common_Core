@@ -6,13 +6,13 @@
 #    By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 12:23:36 by dbrundl           #+#    #+#              #
-#    Updated: 2023/09/25 16:46:32 by dbrundl          ###   ########.fr        #
+#    Updated: 2023/09/25 16:58:03 by dbrundl          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS = 	ft_print_hex.c ft_print_pointer.c ft_printf.c ft_write.c
 
-LIBFT_PATH	=	./libft
+LIBFT_PATH	=	./Libft
 LIBFT		=	$(LIBFT_PATH)/libft.a
 $(LIBFT):
 				make -C $(LIBFT_PATH)
@@ -30,12 +30,14 @@ NAME 		= 	libftprintf.a
 
 all:			$(LIBFT) $(NAME)
 
-clean:		
+clean:			
+				make clean -C $(LIBFT_PATH)
 				$(RM) $(OBJS)
 
-fclean:			clean -C $(LIBFT_PATH)
+fclean:			clean
+				make fclean -C $(LIBFT_PATH)
 				$(RM) $(NAME)
 
-re:				fclean $(NAME)
+re:				fclean all
 
 .PHONY:			all clean fclean re libft
