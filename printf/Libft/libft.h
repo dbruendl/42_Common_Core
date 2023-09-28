@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 17:00:03 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/25 16:54:55 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 10:47:49 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ft_toupper(int c);
 void	*ft_calloc(size_t nelem, size_t elsize);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
-void	ft_putchar_fd(char c, int fd);
+int	ft_putchar_fd(char c, int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
