@@ -21,7 +21,7 @@
 # define DEC "0123456789"
 
 int ft_printf(const char *format, ...);
-int ft_write(char *c);
+int ft_write(char *c, int f);
 int	ft_print_hex(unsigned int num, char form);
 int ft_print_pointer(void *p);
 #endif

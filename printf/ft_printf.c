@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/28 18:20:03 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 18:47:51 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static int check_references(char c, va_list ap)
     if(c == 'c')
         i = ft_putchar_fd(va_arg(ap, int),1);
     else if(c == 's')
-        i = ft_write(va_arg(ap, char *));
+        i = ft_write(va_arg(ap, char *), 1);
     else if(c == 'p')
         i = ft_print_pointer(va_arg(ap,void *));
     else if(c == 'd' || c == 'i')
-        i = ft_write(ft_itoa(va_arg(ap,int)));
+        i = ft_write(ft_itoa(va_arg(ap,int)),0);
     else if(c == 'u')
-        i = ft_write(ft_itoa_base(va_arg(ap,unsigned int),DEC));
+        i = ft_write(ft_itoa_base(va_arg(ap,unsigned int),DEC),0);
     else if(c == 'x')
         i = ft_print_hex(va_arg(ap,unsigned int),c);
     else if(c == 'X')

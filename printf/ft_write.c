@@ -6,13 +6,13 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 13:57:38 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/28 12:46:51 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 18:46:54 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_write(char *c)
+int ft_write(char *c, int f)
 {
     int i;
 
@@ -22,5 +22,7 @@ int ft_write(char *c)
     else
         while(c[i])
             i = i + ft_putchar_fd(c[i],1);
+    if(f == 0)
+        free (c);
     return (i);
 }

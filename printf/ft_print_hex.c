@@ -25,9 +25,9 @@ int	ft_print_hex(unsigned int num, char form)
     else
     {
         if(form == 'x')
-		    i = ft_write(ft_itoa_base(num,HEX));
+		    i = ft_write(ft_itoa_base(num,HEX),0);
         else
-            i = ft_write(ft_itoa_base(num,HEX2));
+            i = ft_write(ft_itoa_base(num,HEX2),0);
     }
     return (i);
 }
