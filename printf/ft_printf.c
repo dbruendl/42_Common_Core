@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/28 12:04:53 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 12:36:23 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,22 @@ int ft_printf(const char *format, ...)
 {
     int i;
     int j;
-    int c;
+    int count;
     const char	*str;
     va_list ap;
     va_start(ap,format);
 
-   i = 0;
-   c = 0;
-   str = ft_strdup(format);
+    i = 0;
+    j = 0;
+    str = ft_strdup(format);
 	if (!str)
 		return (0);
-   while(str[i])
-   {
+    count = ft_strlen(str);
+    while(str[i])
+    {
         if(str[i] == '%')
         {
-            j = check_references(str[i + 1],ap);
+            j = j + check_references(str[i + 1],ap);
             if(j == 2)
             {
                 ft_putchar_fd(str[i++],1);
@@ -64,13 +65,13 @@ int ft_printf(const char *format, ...)
             }
             else
             {
-                c++;
-                i = i + j +1;
+                count = count - 2;
+                i = i + 2;
             }
         }
         else
             i = i + ft_putchar_fd(str[i],1);
-   }
-   va_end(ap);
-   return(i-c);
+    }
+    va_end(ap);
+    return(count+j);
 }
