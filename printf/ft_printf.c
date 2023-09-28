@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/28 14:43:54 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 14:52:33 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int ft_printf(const char *format, ...)
         else
             i = i + ft_putchar_fd(str[i],1);
     }
-    free(str);
     va_end(ap);
     return(count+j);
 }
