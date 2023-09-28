@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/28 14:52:33 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 18:20:03 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int check_references(char c, va_list ap)
     else if(c == 'd' || c == 'i')
         i = ft_write(ft_itoa(va_arg(ap,int)));
     else if(c == 'u')
-        i = ft_write(ft_itoa_base(va_arg(ap,unsigned int)*-1,DEC));
+        i = ft_write(ft_itoa_base(va_arg(ap,unsigned int),DEC));
     else if(c == 'x')
         i = ft_print_hex(va_arg(ap,unsigned int),c);
     else if(c == 'X')
@@ -43,25 +43,23 @@ int ft_printf(const char *format, ...)
     int i;
     int j;
     int count;
-    const char	*str;
     va_list ap;
     va_start(ap,format);
 
     i = 0;
     j = 0;
-    str = ft_strdup(format);
-	if (!str)
+	if (!format)
 		return (0);
-    count = ft_strlen(str);
-    while(str[i])
+    count = ft_strlen(format);
+    while(format[i])
     {
-        if(str[i] == '%')
+        if(format[i] == '%')
         {
-            j = j + check_references(str[i + 1],ap);
+            j = j + check_references(format[i + 1],ap);
             if(j == -2)
             {
-                ft_putchar_fd(str[i++],1);
-                ft_putchar_fd(str[i++],1);
+                ft_putchar_fd(format[i++],1);
+                ft_putchar_fd(format[i++],1);
                 j = 2;
             }
             else
@@ -71,7 +69,7 @@ int ft_printf(const char *format, ...)
             }
         }
         else
-            i = i + ft_putchar_fd(str[i],1);
+            i = i + ft_putchar_fd(format[i],1);
     }
     va_end(ap);
     return(count+j);
