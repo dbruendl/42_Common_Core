@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/28 12:55:29 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 13:18:32 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int check_references(char c, va_list ap)
     else if(c == 'd' || c == 'i')
         i = ft_write(ft_itoa(va_arg(ap,int)));
     else if(c == 'u')
-        i = ft_write(ft_itoa(va_arg(ap,unsigned int)));
+        i = ft_write(ft_itoa_base(va_arg(ap,unsigned int)*-1,DEC));
     else if(c == 'x')
         i = ft_print_hex(va_arg(ap,unsigned int),c);
     else if(c == 'X')
