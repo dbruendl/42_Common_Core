@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/25 16:50:04 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/09/28 10:08:45 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int check_references(char c, va_list ap)
         return(1);
     }
     else if(c == 's')
-        return(ft_write(va_arg(ap,int)));
+        return(ft_write(va_arg(ap, char *)));
     else if(c == 'p')
-        return(ft_print_pointer(va_arg(ap,unsigned long)));
+        return(ft_print_pointer(va_arg(ap,void *)));
     else if(c == 'd' || c == 'i')
         return(ft_write(ft_itoa(va_arg(ap,int))));
     else if(c == 'u')
@@ -37,9 +37,7 @@ static int check_references(char c, va_list ap)
         return(1);
     }
     else
-    {
         return (0);
-    }
 }
 
 int ft_printf(const char *format, ...)
@@ -52,15 +50,17 @@ int ft_printf(const char *format, ...)
    while(format[i])
    {
         if(format[i] == '%')
+        {
             if(check_references(format[i + 1],ap) == 0)
             {
                 ft_putchar_fd(format[i],1);
                 i = i + 2;
             }
+        }
         else
             ft_putchar_fd(format[i],1);
         i++;
    }
-   va_stop(ap);
+   va_end(ap);
    return(i);
 }

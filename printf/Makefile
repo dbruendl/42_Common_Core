@@ -6,27 +6,25 @@
 #    By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 12:23:36 by dbrundl           #+#    #+#              #
-#    Updated: 2023/09/25 17:10:14 by dbrundl          ###   ########.fr        #
+#    Updated: 2023/09/28 09:53:16 by dbrundl          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= 	libftprintf.a
-SRCS 		= 	ft_print_hex.c ft_print_pointer.c ft_printf.c ft_write.c
-
 LIBFT_PATH	=	./Libft
 LIBFT		=	$(LIBFT_PATH)/libft.a
-$(LIBFT):
-				make -C $(LIBFT_PATH)
-
-$(NAME): 		$(OBJS)
-				cp $(LIBFT) $(NAME)
-				ar rcs $(NAME) $(OBJS)
-
-OBJS 		= 	$(SRCS:.c=.o)
-
+SRCS 		= 	ft_print_hex.c ft_print_pointer.c ft_printf.c ft_write.c
 CC 			= 	cc
 RM 			= 	rm -f
 CFLAGS		= 	-Wall -Werror -Wextra
+OBJS 		= 	$(SRCS:.c=.o)
+
+$(LIBFT):
+				make -C $(LIBFT_PATH)
+
+$(NAME): 	$(OBJS)
+				cp $(LIBFT) $(NAME)
+				ar rcs $(NAME) $(OBJS)
 
 all:			$(LIBFT) $(NAME)
 
@@ -40,4 +38,4 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re libft
+.PHONY:			all clean fclean re Libft
