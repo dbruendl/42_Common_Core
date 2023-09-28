@@ -10,7 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = 	ft_print_hex.c ft_print_pointer.c ft_printf.c ft_write.c
+NAME 		= 	libftprintf.a
+SRCS 		= 	ft_print_hex.c ft_print_pointer.c ft_printf.c ft_write.c
 
 LIBFT_PATH	=	./Libft
 LIBFT		=	$(LIBFT_PATH)/libft.a
@@ -26,8 +27,6 @@ OBJS 		= 	$(SRCS:.c=.o)
 CC 			= 	cc
 RM 			= 	rm -f
 CFLAGS		= 	-Wall -Werror -Wextra
-
-NAME 		= 	libftprintf.a
 
 all:			$(LIBFT) $(NAME)
 
