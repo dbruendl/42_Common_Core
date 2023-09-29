@@ -20,8 +20,8 @@
 # define HEX2 "0123456789ABCDEF"
 # define DEC "0123456789"
 
-int ft_printf(const char *format, ...);
-int ft_write(char *c, int f);
+int	ft_printf(const char *format, ...);
+int	ft_write(char *c, int f);
 int	ft_print_hex(unsigned int num, char form);
-int ft_print_pointer(void *p);
+int	ft_print_pointer(void *p);
 #endif

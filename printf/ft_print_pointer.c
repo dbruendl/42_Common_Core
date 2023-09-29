@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-int ft_print_pointer(void *p)
+int	ft_print_pointer(void *p)
 {
-    int             i;
-    unsigned long   adr;
+	int				i;
+	unsigned long	adr;
 
-    adr = (unsigned long) p;
-	if(adr == 0)
-        return(write(1,"(nil)",5));
-    i = ft_write("0x",1) + ft_write(ft_itoa_base(adr,HEX),0);
-    return i;
+	adr = (unsigned long) p;
+	if (adr == 0)
+		return (write(1, "(nil)", 5));
+	i = ft_write("0x", 1) + ft_write(ft_itoa_base(adr, HEX), 0);
+	return (i);
 }

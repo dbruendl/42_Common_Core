@@ -12,17 +12,17 @@
 
 #include "ft_printf.h"
 
-int ft_write(char *c, int f)
+int	ft_write(char *c, int f)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if(c == NULL)
-        return(write(1,"(null)",6));
-    else
-        while(c[i])
-            i = i + ft_putchar_fd(c[i],1);
-    if(f == 0)
-        free (c);
-    return (i);
+	i = 0;
+	if (c == NULL)
+		return (write(1, "(null)", 6));
+	else
+		while (c[i])
+			i = i + ft_putchar_fd(c[i], 1);
+	if (f == 0)
+		free (c);
+	return (i);
 }
