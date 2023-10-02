@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/10/02 14:06:38 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/10/02 14:13:51 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,8 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			j = j + check_references(format[i + 1], ap);
-			if (j == -2)
-			{
-				ft_putchar_fd(format[i++], 1);
-				ft_putchar_fd(format[i++], 1);
-				j = j + 4;
-			}
-			else
-			{
-				count = count - 2;
-				i = i + 2;
-			}
+			count = count - 2;
+			i = i + 2;
 		}
 		else
 			i = i + ft_putchar_fd(format[i], 1);
