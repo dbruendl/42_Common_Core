@@ -38,11 +38,19 @@ static int	check_references(char c, va_list ap)
 	return (i);
 }
 
-static int	ft_iterate(const char *format, int j, int count, va_list ap)
+int	ft_printf(const char *format, ...)
 {
-	int		i;
+	int			j;
+	int			i;
+	int			count;
+	va_list		ap;
 
+	va_start(ap, format);
+	j = 0;
 	i = 0;
+	if (!format)
+		return (0);
+	count = ft_strlen(format);
 	while (format)
 	{
 		if (format[i] == '%')
@@ -63,21 +71,6 @@ static int	ft_iterate(const char *format, int j, int count, va_list ap)
 		else
 			i = i + ft_putchar_fd(format[i], 1);
 	}
-	return (count + j);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	int			j;
-	int			count;
-	va_list		ap;
-
-	va_start(ap, format);
-	j = 0;
-	if (!format)
-		return (0);
-	count = ft_strlen(format);
-	count = ft_iterate(format, j, count, ap);
 	va_end(ap);
 	return (count + j);
 }
