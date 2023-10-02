@@ -6,7 +6,7 @@
 /*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 12:21:04 by dbrundl           #+#    #+#             */
-/*   Updated: 2023/09/29 17:39:14 by dbrundl          ###   ########.fr       */
+/*   Updated: 2023/10/02 14:06:38 by dbrundl          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,33 @@ static int	check_references(char c, va_list ap)
 
 int	ft_printf(const char *format, ...)
 {
-	int			j;
 	int			i;
+	int			j;
 	int			count;
 	va_list		ap;
 
 	va_start(ap, format);
-	j = 0;
 	i = 0;
+	j = 0;
 	if (!format)
 		return (0);
 	count = ft_strlen(format);
-	while (format)
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
 			j = j + check_references(format[i + 1], ap);
-			count = count - 2;
-			i = i + 2;
+			if (j == -2)
+			{
+				ft_putchar_fd(format[i++], 1);
+				ft_putchar_fd(format[i++], 1);
+				j = j + 4;
+			}
+			else
+			{
+				count = count - 2;
+				i = i + 2;
+			}
 		}
 		else
 			i = i + ft_putchar_fd(format[i], 1);
