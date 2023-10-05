@@ -19,6 +19,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (*s2)
 		*s++ = *s2++;
 	*s = '\0';
+	free(s1);
 	return (pos1);
 }
 
