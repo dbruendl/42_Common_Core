@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbrundl <dbrundl@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/05 16:14:46 by dbrundl           #+#    #+#             */
+/*   Updated: 2023/10/05 16:14:46 by dbrundl          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
@@ -8,7 +19,7 @@ char	*ft_new_rest_str(char *rest_str)
 	char	*str;
 
 	i = 0;
-	while(rest_str[i] && rest_str[i] != "\n")
+	while(rest_str[i] && rest_str[i] != '\n')
 		i++;
 	if(!rest_str[i])
 	{
@@ -22,7 +33,7 @@ char	*ft_new_rest_str(char *rest_str)
 	j = 0;
 	while(rest_str[i])
 		str[j++] = rest_str[i++];
-	str[j] = "\0";
+	str[j] = '\0';
 	free(rest_str);
 	return (str);
 }
@@ -35,15 +46,20 @@ char	*ft_get_line(char *rest_str)
 	if(!rest_str)
 		return(NULL);
 	i = 0;
-	str = ft_calloc(rest_str,i);
-	while(rest_str[i] && rest_str[i] != "\n")
+	while(rest_str[i] && rest_str[i] != '\n')
+		i++;
+	if(rest_str[i] == '\n')
+		i++;
+	str = (char *) malloc(sizeof(char) * i + 1);	
+	i = 0;
+	while(rest_str[i] && rest_str[i] != '\n')
 	{
 		str[i] = rest_str[i];
 		i++;
 	}
-	if(rest_str[i++] == "\n")
+	if(rest_str[i++] == '\n')
 		str[i] = rest_str[i];
-	str[i] = "\0";
+	str[i] = '\0';
 	return (str);
 }
 
@@ -56,7 +72,7 @@ char	*ft_read_rest_str(int fd, char *rest_str)
 	if(!buf)
 		return(NULL);
 	rd_bytes = 1;
-	while(!ft_strchr(rest_str, "\n") && rd != 0)
+	while(!ft_strchr(rest_str, '\n') && rd_bytes != 0)
 	{
 		rd_bytes = read(fd, buf, BUFFER_SIZE);
 		if(rd_bytes == -1)
@@ -65,7 +81,8 @@ char	*ft_read_rest_str(int fd, char *rest_str)
 			free(rest_str);
 			return (NULL);
 		}
-		buf(rd_bytes) = "\0";
+		else
+			buf[rd_bytes] = '\0';
 		rest_str = ft_strjoin(rest_str, buf);
 	}
 	free(buf);
@@ -79,8 +96,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	rest_str = ft_read_rest_str(fd,*rest_str);
-	line = ft_get_line(*rest_str);
-	rest_str = ft_new_rest_str(*rest_str);
+	rest_str = ft_read_rest_str(fd,rest_str);
+	line = ft_get_line(rest_str);
+	rest_str = ft_new_rest_str(rest_str);
 	return(line);
 }
