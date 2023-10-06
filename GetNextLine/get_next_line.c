@@ -48,7 +48,9 @@ char	*ft_get_line(char *rest_str)
 	i = 0;
 	while (rest_str[i] && rest_str[i] != '\n')
 		i++;
-	str = (char *) malloc(sizeof(char) * i + 2);
+	if(rest_str[i] == '\n')
+		i++;
+	str = (char *) malloc(sizeof(char) * i + 1);
 	if (!str)
 		return (NULL);
 	i = 0;
