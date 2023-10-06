@@ -30,13 +30,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s)
 		return (NULL);
 	pos1 = s;
-	while (*s1)
-		*s++ = *s1++;
+	if (s1)
+	{
+		while (*s1)
+			*s++ = *s1++;
+	}
 	while (*s2)
 		*s++ = *s2++;
 	*s = '\0';
-	free (s1);
-	return (pos1);
+	return (free (s1), pos1);
 }
 
 char	*ft_strchr(const char *s, int c)
