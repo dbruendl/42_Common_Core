@@ -59,10 +59,12 @@ static char	*ft_get_line(char *rest_str)
 		str[i] = rest_str[i];
 		i++;
 	}
-	if (rest_str[i++] == '\n')
+	if (rest_str[i] == '\n')
+	{
 		str[i] = rest_str[i];
-	str[i] = '\0';
-	return (str);
+		i++;
+	}
+	return (str[i] = '\0', str);
 }
 
 static char	*ft_read_rest_str(int fd, char *rest_str)
@@ -85,7 +87,7 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 			return (free (buf), free (rest_str), NULL);
 		buf[rd_bytes] = '\0';
 		rest_str = ft_strjoin(rest_str, buf);
-		if(ft_strchr(rest_str, '\n'))
+		if (ft_strchr(rest_str, '\n'))
 			break ;
 	}
 	free (buf);
