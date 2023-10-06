@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_new_rest_str(char *rest_str)
+static char	*ft_new_rest_str(char *rest_str)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,7 @@ char	*ft_new_rest_str(char *rest_str)
 	return (str);
 }
 
-char	*ft_get_line(char *rest_str)
+static char	*ft_get_line(char *rest_str)
 {
 	int		i;
 	char	*str;
@@ -52,7 +52,7 @@ char	*ft_get_line(char *rest_str)
 		i++;
 	str = (char *) malloc(sizeof(char) * i + 1);
 	if (!str)
-		return (NULL);
+		return (free (str), NULL);
 	i = 0;
 	while (rest_str[i] && rest_str[i] != '\n')
 	{
@@ -65,12 +65,12 @@ char	*ft_get_line(char *rest_str)
 	return (str);
 }
 
-char	*ft_read_rest_str(int fd, char *rest_str)
+static char	*ft_read_rest_str(int fd, char *rest_str)
 {
 	char	*buf;
 	int		rd_bytes;
 
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buf = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 	{
 		if (!rest_str)
@@ -78,14 +78,15 @@ char	*ft_read_rest_str(int fd, char *rest_str)
 		return (NULL);
 	}
 	rd_bytes = 1;
-	while (!ft_strchr(rest_str, '\n') && rd_bytes != 0)
+	while (rd_bytes > 0)
 	{
 		rd_bytes = read(fd, buf, BUFFER_SIZE);
-		if (rd_bytes == -1)
+		if (rd_bytes < 0)
 			return (free (buf), free (rest_str), NULL);
-		else
-			buf[rd_bytes] = '\0';
+		buf[rd_bytes] = '\0';
 		rest_str = ft_strjoin(rest_str, buf);
+		if(ft_strchr(rest_str, '\n'))
+			break ;
 	}
 	free (buf);
 	return (rest_str);
