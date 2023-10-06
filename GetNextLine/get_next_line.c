@@ -59,11 +59,8 @@ char	*ft_get_line(char *rest_str)
 		str[i] = rest_str[i];
 		i++;
 	}
-	if (rest_str[i] == '\n')
-	{
+	if (rest_str[i++] == '\n')
 		str[i] = rest_str[i];
-		i++;
-	}
 	str[i] = '\0';
 	return (str);
 }
