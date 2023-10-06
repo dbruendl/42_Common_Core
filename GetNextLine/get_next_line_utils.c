@@ -12,13 +12,20 @@
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	sum;
 	char	*s;
 	char	*pos1;
 
-	if (!s1 || !s2)
+	if (!s1)
+	{
+		s1 = (char *)malloc(sizeof(char) * 1);
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
+	if (!s1 && !s2)
 		return (NULL);
 	sum = ft_strlen(s1) + ft_strlen(s2);
 	s = (char *) malloc(sizeof(char) * (sum + 1));
@@ -30,7 +37,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (*s2)
 		*s++ = *s2++;
 	*s = '\0';
-	free(s);
+	free (s1);
 	return (pos1);
 }
 
