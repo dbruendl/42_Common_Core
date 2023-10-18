@@ -18,13 +18,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*s;
 	char	*pos1;
 
-	if (!s1)
-	{
-		s1 = (char *)malloc(sizeof(char) * 1);
-		if (!s1)
-			return (NULL);
-		s1[0] = '\0';
-	}
 	if (!s1 || !s2)
 		return (NULL);
 	sum = ft_strlen(s1) + ft_strlen(s2);
@@ -79,7 +72,7 @@ char	*ft_strdup(const char *s)
 	c = (char *)malloc(sizeof(char) * i + 1);
 	if (!c)
 		return (NULL);
-	ft_strlcpy(c, s, i+1);
+	ft_strlcpy(c, s, i + 1);
 	return (c);
 }
 

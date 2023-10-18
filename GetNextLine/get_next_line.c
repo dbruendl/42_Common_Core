@@ -22,7 +22,7 @@ static char	*ft_new_rest_str(char *rest_str)
 	while (rest_str[i] && rest_str[i] != '\n')
 		i++;
 	if (!rest_str[i])
-		return (free (rest_str),NULL);
+		return (free (rest_str), NULL);
 	str = (char *) malloc (sizeof(char) * (ft_strlen(rest_str) - i + 1));
 	if (!str)
 		return (NULL);
@@ -73,8 +73,7 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 	if (!buf)
 	{
 		if (!rest_str)
-			free (rest_str);
-		return (NULL);
+			return (NULL);
 	}
 	rd_bytes = 1;
 	while (!ft_strchr(rest_str, '\n') && rd_bytes != 0)
@@ -84,6 +83,8 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 			return (free (buf), free (rest_str), NULL);
 		buf[rd_bytes] = '\0';
 		rest_str = ft_strjoin(rest_str, buf);
+		if (!rest_str)
+			return (NULL);
 	}
 	free (buf);
 	return (rest_str);
@@ -94,7 +95,7 @@ char	*get_next_line(int fd)
 	static char		*rest_str;
 	char			*line;
 
-	if(!rest_str)
+	if (!rest_str)
 		rest_str = ft_strdup("");
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
