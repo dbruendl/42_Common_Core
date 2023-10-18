@@ -71,11 +71,7 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-	{
-		if (rest_str)
-			free(rest_str);
 		return (NULL);
-	}
 	rd_bytes = 1;
 	while (!ft_strchr(rest_str, '\n') && rd_bytes != 0)
 	{
@@ -84,8 +80,6 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 			return (free (buf), free (rest_str), NULL);
 		buf[rd_bytes] = '\0';
 		rest_str = ft_strjoin(rest_str, buf);
-		if (!rest_str)
-			return (NULL);
 	}
 	free (buf);
 	return (rest_str);
@@ -93,16 +87,16 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 
 char	*get_next_line(int fd)
 {
-	static char		*rest_str = NULL;
+	static char		*rest_str;
 	char			*line;
 
-	if (!rest_str)
-		rest_str = ft_strdup("");
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
+	if (!rest_str)
+		rest_str = ft_strdup("");
 	rest_str = ft_read_rest_str(fd, rest_str);
 	if (!rest_str)
-		return (NULL);
+		return (free(rest_str), NULL);
 	line = ft_get_line(rest_str);
 	rest_str = ft_new_rest_str(rest_str);
 	return (line);
