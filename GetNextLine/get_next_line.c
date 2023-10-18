@@ -21,12 +21,13 @@ static char	*ft_new_rest_str(char *rest_str)
 	i = 0;
 	while (rest_str[i] && rest_str[i] != '\n')
 		i++;
+	if (rest_str[i] == '\n')
+		i++;
 	if (!rest_str[i])
 		return (free (rest_str), NULL);
 	str = (char *) malloc (sizeof(char) * (ft_strlen(rest_str) - i + 1));
 	if (!str)
 		return (NULL);
-	i++;
 	j = 0;
 	while (rest_str[i])
 		str[j++] = rest_str[i++];
@@ -40,7 +41,7 @@ static char	*ft_get_line(char *rest_str)
 	int		i;
 	char	*str;
 
-	if (!rest_str)
+	if (!rest_str || !*rest_str)
 		return (NULL);
 	i = 0;
 	while (rest_str[i] && rest_str[i] != '\n')
@@ -101,23 +102,22 @@ char	*get_next_line(int fd)
 	rest_str = ft_new_rest_str(rest_str);
 	return (line);
 }
-/*
-#include <stdio.h>
-#include <fcntl.h>
-int	main(void)
-{
-	int	i;
-	int fd;
-	char *gnl;
-	
-	i = 4;
-	fd = open("empty.txt", O_RDONLY);
-	while (i)
-	{
-		gnl = get_next_line(fd);
-		printf("{%s}", gnl);
-		free(gnl);
-		i--;
-	}
-	close(fd);
-}*/
+
+// #include <stdio.h>
+// #include <fcntl.h>
+// int	main(void)
+// {
+// 	int	i;
+// 	int fd;
+// 	char *gnl;
+// 	i = 6;
+// 	fd = open("test.txt", O_RDONLY);
+// 	while (i)
+// 	{
+// 		gnl = get_next_line(fd);
+// 		printf("{%s}\n", gnl);
+// 		free(gnl);
+// 		i--;
+// 	}
+// 	close(fd);
+// }
