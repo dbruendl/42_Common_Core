@@ -72,8 +72,9 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 	{
-		if (!rest_str)
-			return (NULL);
+		if (rest_str)
+			free(rest_str);
+		return (NULL);
 	}
 	rd_bytes = 1;
 	while (!ft_strchr(rest_str, '\n') && rd_bytes != 0)
@@ -92,7 +93,7 @@ static char	*ft_read_rest_str(int fd, char *rest_str)
 
 char	*get_next_line(int fd)
 {
-	static char		*rest_str;
+	static char		*rest_str = NULL;
 	char			*line;
 
 	if (!rest_str)
@@ -120,7 +121,7 @@ int	main(void)
 	while (i)
 	{
 		gnl = get_next_line(fd);
-		printf("get_next_line: %s\n", gnl);
+		printf("{%s}", gnl);
 		free(gnl);
 		i--;
 	}

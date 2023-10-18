@@ -16,21 +16,23 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	sum;
 	char	*s;
-	char	*pos1;
+	int		i;
+	int		j;
 
+	i = -1;
 	if (!s1 || !s2)
 		return (NULL);
 	sum = ft_strlen(s1) + ft_strlen(s2);
 	s = malloc(sizeof(char) * (sum + 1));
 	if (!s)
 		return (NULL);
-	pos1 = s;
-	while (*s1)
-		*s++ = *s1++;
-	while (*s2)
-		*s++ = *s2++;
-	*s = '\0';
-	return (free (s1), pos1);
+	while (s1[++i])
+		s[i] = s1[i];
+	j = 0;
+	while (s2[j])
+		s[i++] = s2[j++];
+	s[i] = '\0';
+	return (free (s1), s);
 }
 
 char	*ft_strchr(const char *s, int c)
