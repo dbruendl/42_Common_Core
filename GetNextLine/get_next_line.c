@@ -94,9 +94,8 @@ char	*get_next_line(int fd)
 	static char		*rest_str;
 	char			*line;
 
-	rest_str = ft_strdup("");
 	if(!rest_str)
-		return (NULL);
+		rest_str = ft_strdup("");
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	rest_str = ft_read_rest_str(fd, rest_str);
@@ -115,16 +114,14 @@ int	main(void)
 	int fd;
 	char *gnl;
 	
-	i = 1;
+	i = 4;
 	fd = open("empty.txt", O_RDONLY);
-	
-	
 	while (i)
 	{
 		gnl = get_next_line(fd);
 		printf("get_next_line: %s\n", gnl);
-		i--;
 		free(gnl);
+		i--;
 	}
 	close(fd);
 }*/
