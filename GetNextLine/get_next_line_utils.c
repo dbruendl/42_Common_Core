@@ -58,37 +58,48 @@ char	*ft_strchr(const char *s, int c)
 	return ((char *)str);
 }
 
-void	ft_bzero(void *s, size_t n)
+size_t	ft_strlen(const char *str)
 {
-	char		*reset;
-	size_t		i;
+	int	length;
 
-	i = 0;
-	reset = s;
-	while (i < n)
-	{
-		reset[i] = 0;
-		i++;
-	}
+	length = 0;
+	while (str [length])
+		length++;
+	return (length);
 }
 
-void	*ft_calloc(size_t nelem, size_t elsize)
+char	*ft_strdup(const char *s)
 {
-	char	*res;
+	char	*c;
+	int		i;
 
-	res = malloc(elsize * nelem);
-	if (!res)
+	i = 0;
+	while (s[i])
+		i++;
+	c = (char *)malloc(sizeof(char) * i + 1);
+	if (!c)
 		return (NULL);
-	ft_bzero(res, elsize * nelem);
-	return (res);
+	ft_strlcpy(c, s, i+1);
+	return (c);
 }
 
-size_t	ft_strlen(const char *theString)
+size_t	ft_strlcpy(char *dest, const char *src, unsigned int size)
 {
-	int	i;
+	unsigned int	i;
+	int				l;
 
 	i = 0;
-	while (theString[i])
-		i++;
-	return (i);
+	l = 0;
+	while (src[l])
+		l++;
+	if (size > 0)
+	{
+		while (src[i] && (i < (size - 1)))
+		{
+			dest[i] = src[i];
+			i++;
+		}
+		dest[i] = '\0';
+	}
+	return (l);
 }
