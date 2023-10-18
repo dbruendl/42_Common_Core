@@ -25,10 +25,10 @@ char	*ft_strjoin(char *s1, char *s2)
 			return (NULL);
 		s1[0] = '\0';
 	}
-	if (!s1 && !s2)
+	if (!s1 || !s2)
 		return (NULL);
 	sum = ft_strlen(s1) + ft_strlen(s2);
-	s = (char *) malloc(sizeof(char) * (sum + 1));
+	s = malloc(sizeof(char) * (sum + 1));
 	if (!s)
 		return (NULL);
 	pos1 = s;
