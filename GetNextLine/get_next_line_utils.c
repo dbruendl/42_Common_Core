@@ -25,7 +25,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	sum = ft_strlen(s1) + ft_strlen(s2);
 	s = malloc(sizeof(char) * (sum + 1));
 	if (!s)
-		return (NULL);
+		return (free(s1), NULL);
 	while (s1[++i])
 		s[i] = s1[i];
 	j = 0;
@@ -69,6 +69,8 @@ char	*ft_strdup(const char *s)
 	int		i;
 
 	i = 0;
+	if (!s)
+		return (NULL);
 	while (s[i])
 		i++;
 	c = (char *)malloc(sizeof(char) * i + 1);

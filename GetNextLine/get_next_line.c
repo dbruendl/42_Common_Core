@@ -27,7 +27,7 @@ static char	*ft_new_str(char *str)
 		return (free (str), NULL);
 	new_str = (char *) malloc (sizeof(char) * (ft_strlen(str) - i + 1));
 	if (!new_str)
-		return (NULL);
+		return (free(str), NULL);
 	j = 0;
 	while (str[i])
 		new_str[j++] = str[i++];
@@ -72,7 +72,7 @@ static char	*ft_read_str(int fd, char *str)
 
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (NULL);
+		return (free(str), NULL);
 	rd_bytes = 1;
 	while (!ft_strchr(str, '\n') && rd_bytes != 0)
 	{
@@ -81,6 +81,8 @@ static char	*ft_read_str(int fd, char *str)
 			return (free (buf), free (str), NULL);
 		buf[rd_bytes] = '\0';
 		str = ft_strjoin(str, buf);
+		if (!str)
+			return (free(buf), NULL);
 	}
 	free (buf);
 	return (str);
@@ -94,7 +96,11 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
 	if (!str)
+	{
 		str = ft_strdup("");
+		if (!str)
+			return (0);
+	}
 	str = ft_read_str(fd, str);
 	if (!str)
 		return (free(str), NULL);
@@ -105,13 +111,15 @@ char	*get_next_line(int fd)
 /*
 #include <stdio.h>
 #include <fcntl.h>
+
 int	main(void)
 {
 	int	i;
 	int fd;
 	char *gnl;
-	i = 6;
-	fd = open("empty.txt", O_RDONLY);
+	i = 8;
+	fd = open("test.txt", O_RDONLY);
+	fd = 42;
 	while (i)
 	{
 		gnl = get_next_line(fd);
