@@ -26,12 +26,12 @@ static char	*ft_new_str(char *str)
 	if (!str[i])
 		return (free (str), NULL);
 	new_str = (char *) malloc (sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!str)
+	if (!new_str)
 		return (NULL);
 	j = 0;
 	while (str[i])
 		new_str[j++] = str[i++];
-	str[j] = '\0';
+	new_str[j] = '\0';
 	free (str);
 	return (new_str);
 }
@@ -50,7 +50,7 @@ static char	*ft_get_line(char *str)
 		i++;
 	new_str = (char *) malloc(sizeof(char) * i + 1);
 	if (!new_str)
-		return (free (str), NULL);
+		return (free (new_str), NULL);
 	i = 0;
 	while (str[i] && str[i] != '\n')
 	{
